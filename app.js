@@ -13,13 +13,14 @@ const { PORT = 3000 } = process.env;
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
 
-// front end folder
+// front end static folder
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// todo api routes
 app.use('/api',todoRoutes);
 
 // handle 404

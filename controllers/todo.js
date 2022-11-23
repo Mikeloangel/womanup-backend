@@ -27,7 +27,7 @@ module.exports.postTodo = (req, res, next) => {
     });
 }
 
-// put done id is in param
+// put done to todo, id is in param
 module.exports.putDone = (req, res, next) => {
   const { id } = req.params;
 
@@ -45,7 +45,7 @@ module.exports.putDone = (req, res, next) => {
     });
 }
 
-// delete done id is param
+// delete done to todo, id is in param
 module.exports.deleteDone = (req, res, next) => {
   const { id } = req.params;
   Todo.findByIdAndUpdate(id, { isFinished: false }, { new: true })
@@ -62,7 +62,7 @@ module.exports.deleteDone = (req, res, next) => {
     });
 }
 
-// patches todo
+// patches to do fields returns updated todo
 module.exports.patchTodo = (req, res, next) => {
   const { id } = req.params;
   const { caption, description, expires, isFinished, fileList } = req.body;

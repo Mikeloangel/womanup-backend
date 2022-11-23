@@ -1,28 +1,26 @@
-[![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml)
-# Проект Mesto фронтенд + бэкенд
+# Тестовое для WomanUp - backup
 
 ## Описание
 
-Backend API для проекта Mesto
+Backend API для todo list
 
 ## Использованные технологии
 
 * Node.js
 * Express.js
 * Javascript
-* Eslint
 * Postman
 
 ## Ссылка на Git Hub
-[GitHub](https://github.com/Mikeloangel/express-mesto-gha)
+[GitHub](https://github.com/Mikeloangel/womanup-backend)
 
 ## Директории
 
-`/routes` — папка с файлами роутера  
-`/controllers` — папка с файлами контроллеров пользователя и карточки   
-`/models` — папка с файлами описания схем пользователя и карточки  
-  
-Остальные директории вспомогательные, создаются при необходимости разработчиком
+`/routes` — файлы роутера  
+`/controllers` — файлы контроллеров тудулиста
+`/models` —  схемы тудулиста
+`/errors` — классы ошибок
+`/public` — деплой фронтенда  
 
 ## Запуск проекта
 
