@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const { handleErrors } = require('./middlwares/handleErrors');
 const { PORT = 3000 } = process.env;
+const ResourceNotFoundError = require('./errors/not-found-error');
 
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
@@ -16,6 +17,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(todoRoutes);
+
+// handle 404
+app.all('*', (req, res, next) => {
+  next(new ResourceNotFoundError());
+});
 
 // // celebrate handle errors
 app.use(errors());
