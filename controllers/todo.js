@@ -1,5 +1,8 @@
 const Todo = require('../models/todo');
 
+const WrongDataError = require('../errors/wrong-data-error');
+const ResourceNotFoundError = require('../errors/not-found-error');
+
 // get all todos
 module.exports.getTodos = (req, res, next) => {
   Todo.find({})
@@ -15,7 +18,13 @@ module.exports.postTodo = (req, res, next) => {
     .then((todo) => {
       res.status(201).send(todo);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new WrongDataError());
+      } else {
+        next(err);
+      }
+    });
 }
 
 // put done id is in param
@@ -25,7 +34,15 @@ module.exports.putDone = (req, res, next) => {
   Todo.findByIdAndUpdate(id, { isFinished: true }, { new: true })
     .orFail()
     .then((updatedTodo) => res.send(updatedTodo))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
+        next(new WrongDataError());
+      } else if (err.name === 'DocumentNotFoundError') {
+        next(new ResourceNotFoundError());
+      } else {
+        next(err);
+      }
+    });
 }
 
 // delete done id is param
@@ -34,7 +51,15 @@ module.exports.deleteDone = (req, res, next) => {
   Todo.findByIdAndUpdate(id, { isFinished: false }, { new: true })
     .orFail()
     .then((updatedTodo) => res.send(updatedTodo))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
+        next(new WrongDataError());
+      } else if (err.name === 'DocumentNotFoundError') {
+        next(new ResourceNotFoundError());
+      } else {
+        next(err);
+      }
+    });
 }
 
 // patches todo
@@ -47,8 +72,20 @@ module.exports.patchTodo = (req, res, next) => {
     { caption, description, expires, isFinished, fileList },
     { new: true, runValidators: true }
   )
+    .orFail()
     .then(updatedTodo => res.send(updatedTodo))
-    .catch(next);
+    .catch((err) => {
+      console.log(err.name)
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
+        next(new WrongDataError());
+      }
+
+      if (err.name === 'DocumentNotFoundError') {
+        next(new ResourceNotFoundError());
+      } else {
+        next(err);
+      }
+    });
 }
 
 // deletes todo
