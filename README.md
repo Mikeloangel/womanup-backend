@@ -1,28 +1,28 @@
-# Тестовое для WomanUp - backup
+# Test task for WomanUp - back end side
 
-## Описание
+## Description
 
-Backend API для todo list
+Backend API for TodoList with static front end 
 
-## Использованные технологии
+## Tech stack
 
 * Node.js
 * Express.js
 * Javascript
 * Postman
 
-## Ссылка на Git Hub
-[GitHub](https://github.com/Mikeloangel/womanup-backend)
+## Git Hub 
+[Link](https://github.com/Mikeloangel/womanup-backend)
 
-## Директории
+## Paths
 
-`/routes` — файлы роутера  
-`/controllers` — файлы контроллеров тудулиста
-`/models` —  схемы тудулиста
-`/errors` — классы ошибок
-`/public` — деплой фронтенда  
+`/routes` — Router folder for todo  
+`/controllers` — Controller folder for todo  
+`/models` —  Mongoose schema for todo  
+`/errors` — Error classes  
+`/public` — Frontend deploy 
 
-## Запуск проекта
+## Scripts
 
-`npm run start` — запускает сервер   
-`npm run dev` — запускает сервер с hot-reload
+`npm run start` — Starts server    
+`npm run dev` — Starts server with hot-reload
