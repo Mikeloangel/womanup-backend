@@ -14,10 +14,6 @@ module.exports.getTodos = (req, res, next) => {
 module.exports.postTodo = (req, res, next) => {
   const { caption, description, expires, isFinished = false, fileList } = req.body;
 
-  if(!expires) {
-    expires = undefined;
-  }
-
   Todo.create({ caption, description, expires, isFinished, fileList })
     .then((todo) => {
       res.status(201).send(todo);

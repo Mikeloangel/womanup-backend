@@ -1,25 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const todoRoutes = require('./routers/todo');
-
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const path = require('path')
+
+const todoRoutes = require('./routers/todo');
 const { handleErrors } = require('./middlwares/handleErrors');
-const { PORT = 3000 } = process.env;
 const ResourceNotFoundError = require('./errors/not-found-error');
+
+const { PORT = 3000 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
+
+// front end folder
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(todoRoutes);
+app.use('/api',todoRoutes);
 
 // handle 404
-app.all('*', (req, res, next) => {
+app.all('/api/*', (req, res, next) => {
   next(new ResourceNotFoundError());
 });
 
