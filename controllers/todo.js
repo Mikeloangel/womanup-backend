@@ -1,9 +1,13 @@
 const Todo = require('../models/todo');
 
+// get all todos
 module.exports.getTodos = (req, res, next) => {
-  res.send({ get: 'todos' });
+  Todo.find({})
+    .then((todos) => res.send(todos))
+    .catch(next);
 }
 
+// post single todo
 module.exports.postTodo = (req, res, next) => {
   const { caption, description, expires, isFinished = false, fileList } = req.body;
 
@@ -14,6 +18,7 @@ module.exports.postTodo = (req, res, next) => {
     .catch(next);
 }
 
+//
 module.exports.putDone = (req, res, next) => {
   res.send({ putDone: 'todos' });
 }
