@@ -23,6 +23,7 @@ module.exports.putDone = (req, res, next) => {
   const { id } = req.params;
 
   Todo.findByIdAndUpdate(id, { isFinished: true }, { new: true })
+    .orFail()
     .then((updatedTodo) => res.send(updatedTodo))
     .catch(next);
 }
@@ -31,23 +32,33 @@ module.exports.putDone = (req, res, next) => {
 module.exports.deleteDone = (req, res, next) => {
   const { id } = req.params;
   Todo.findByIdAndUpdate(id, { isFinished: false }, { new: true })
+    .orFail()
     .then((updatedTodo) => res.send(updatedTodo))
     .catch(next);
 }
 
+// patches todo
 module.exports.patchTodo = (req, res, next) => {
-  res.send({ patchTodo: 'todos' });
+  const { id } = req.params;
+  const { caption, description, expires, isFinished, fileList } = req.body;
+
+  Todo.findByIdAndUpdate(
+    id,
+    { caption, description, expires, isFinished, fileList },
+    { new: true, runValidators: true }
+  )
+    .then(updatedTodo => res.send(updatedTodo))
+    .catch(next);
 }
 
+// deletes todo
 module.exports.deleteTodo = (req, res, next) => {
-  res.send({ deleteTodo: 'todos' });
+  const { id } = req.params;
+
+  Todo.deleteOne({ id })
+    .orFail()
+    .then(() => {
+      res.send({ message: 'ok' });
+    })
+    .catch(next);
 }
-
-
-// routes to implement
-// get all todos
-// post todo {caption, description, expiresby, linked files (i will use links)}
-// put done todo id
-// patch todo id
-// delete todo id
-
