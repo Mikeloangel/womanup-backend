@@ -1,3 +1,4 @@
+let isURL = require('validator/lib/isURL');
 const mongoose = require('mongoose');
 
 const todoSchema = mongoose.Schema({
@@ -19,9 +20,14 @@ const todoSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
-  fileList: [{
-    type: String,
-  }]
+  fileList: {
+    type: [{ type: String }],
+    default: [],
+    validate: {
+      validator : (v) => v.every(item => isURL(item)),
+      message: (prop) =>  `${prop.value} неверный адрес!`,
+    }
+  }
 });
 
 module.exports = mongoose.model('todo', todoSchema);

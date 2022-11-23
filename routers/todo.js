@@ -19,8 +19,8 @@ const {
 
 router.get('/',getTodos);
 router.post('/',postTodo);
-router.put('/',putDone);
-router.patch('/',patchTodo);
-router.delete('/',deleteTodo);
+router.put('/:id',putDone);
+router.patch('/:id',patchTodo);
+router.delete('/:id',deleteTodo);
 
 module.exports = router;

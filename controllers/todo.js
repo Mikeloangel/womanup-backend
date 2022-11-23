@@ -5,7 +5,13 @@ module.exports.getTodos = (req, res, next) => {
 }
 
 module.exports.postTodo = (req, res, next) => {
-  res.send({ post: 'todos' });
+  const { caption, description, expires, isFinished = false, fileList } = req.body;
+
+  Todo.create({ caption, description, expires, isFinished, fileList })
+    .then((todo) => {
+      res.status(201).send(todo);
+    })
+    .catch(next);
 }
 
 module.exports.putDone = (req, res, next) => {
