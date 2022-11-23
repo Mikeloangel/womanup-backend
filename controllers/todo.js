@@ -18,9 +18,21 @@ module.exports.postTodo = (req, res, next) => {
     .catch(next);
 }
 
-//
+// put done id is in param
 module.exports.putDone = (req, res, next) => {
-  res.send({ putDone: 'todos' });
+  const { id } = req.params;
+
+  Todo.findByIdAndUpdate(id, { isFinished: true }, { new: true })
+    .then((updatedTodo) => res.send(updatedTodo))
+    .catch(next);
+}
+
+// delete done id is param
+module.exports.deleteDone = (req, res, next) => {
+  const { id } = req.params;
+  Todo.findByIdAndUpdate(id, { isFinished: false }, { new: true })
+    .then((updatedTodo) => res.send(updatedTodo))
+    .catch(next);
 }
 
 module.exports.patchTodo = (req, res, next) => {

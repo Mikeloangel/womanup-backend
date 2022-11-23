@@ -13,14 +13,16 @@ const {
   getTodos,
   postTodo,
   putDone,
+  deleteDone,
   patchTodo,
   deleteTodo
 } = require('../controllers/todo');
 
-router.get('/',getTodos);
-router.post('/',postTodo);
-router.put('/:id',putDone);
-router.patch('/:id',patchTodo);
-router.delete('/:id',deleteTodo);
+router.get('/', getTodos);
+router.post('/', postTodo);
+router.put('/done/:id', putDone);
+router.delete('/done/:id', deleteDone);
+router.patch('/:id', patchTodo);
+router.delete('/:id', deleteTodo);
 
 module.exports = router;
