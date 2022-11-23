@@ -28,6 +28,11 @@ app.all('/api/*', (req, res, next) => {
   next(new ResourceNotFoundError());
 });
 
+// handle react routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
 // // celebrate handle errors
 app.use(errors());
 app.use(handleErrors);
