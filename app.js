@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
@@ -12,6 +13,8 @@ const { PORT = 3000 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
+
+app.use(cors());
 
 // front end static folder
 app.use('/', express.static(path.join(__dirname, 'public')))
