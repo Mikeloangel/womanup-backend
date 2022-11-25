@@ -11,13 +11,14 @@ Backend API for TodoList with static front end
 * Javascript
 * Postman
 
-## Git Hub 
+## Links
 
-[Frontend part git source](https://github.com/Mikeloangel/womanup-frontend)
+[deploy See in action](http://62.84.124.240:3000/) 
 
-[Link](https://github.com/Mikeloangel/womanup-backend)
+[Frontend part git source](https://github.com/Mikeloangel/womanup-frontend) 
 
-[deploy](http://62.84.124.240:3000/)
+[Backend part with static frontend](https://github.com/Mikeloangel/womanup-backend)
+
 
 ## Future fixes
 * make proper deploy
