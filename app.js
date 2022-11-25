@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // todo api routes
-app.use('/api',todoRoutes);
+app.use('/api', todoRoutes);
 
 // handle 404
 app.all('/api/*', (req, res, next) => {

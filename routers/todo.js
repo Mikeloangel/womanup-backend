@@ -64,11 +64,12 @@ router.patch(
       id: Joi.string().length(24).hex().required(),
     }),
     body: Joi.object().keys({
+      _id: Joi.string().length(24).hex(),
       caption: Joi.string().min(2).max(128).required(),
       description: Joi.string(),
       expires: Joi.date().required(),
       isFinished: Joi.boolean(),
-      fileList: Joi.array().items(Joi.string().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/)),
+      fileList: Joi.array().items(Joi.string().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/)).allow(''),
     }),
   }),
   patchTodo
