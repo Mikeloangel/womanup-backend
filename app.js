@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 var cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -13,6 +14,14 @@ const { PORT = 3000 } = process.env;
 
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
+
+// limits to 100 requests in 15 minutes
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
+});
+
+app.use(limiter);
 
 app.use(cors());
 
