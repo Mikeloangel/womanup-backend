@@ -23,6 +23,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
+// enabling cors *
 app.use(cors());
 
 // front end static folder
@@ -45,8 +46,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-// // celebrate handle errors
+// handle errors
+// celebrate
 app.use(errors());
+// centralized middleware
 app.use(handleErrors);
 
 // let's start a server
