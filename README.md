@@ -17,6 +17,8 @@ Backend API for TodoList with static front end
 
 [Link](https://github.com/Mikeloangel/womanup-backend)
 
+[deploy](http://62.84.124.240:3000/)
+
 ## Future fixes
 * make proper deploy
 
