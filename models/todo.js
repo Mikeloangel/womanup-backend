@@ -10,6 +10,7 @@ const todoSchema = mongoose.Schema({
   },
   description: {
     type: String,
+    maxlength: 512,
   },
   expires: {
     type: Date,

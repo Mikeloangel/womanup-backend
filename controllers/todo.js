@@ -10,6 +10,22 @@ module.exports.getTodos = (req, res, next) => {
     .catch(next);
 }
 
+// get todo by id
+module.exports.getTodoById = (req, res, next) => {
+  const { id } = req.params;
+  Todo.find({ _id: id })
+    .orFail()
+    .then((todo) => res.send(todo))
+    .catch((err) => {
+      const responceError = {
+        CastError: new WrongDataError(),
+        DocumentNotFoundError: new ResourceNotFoundError(),
+      };
+
+      next(responceError[err.name] || err);
+    });
+}
+
 // post single todo
 module.exports.postTodo = (req, res, next) => {
   const { caption, description, expires, isFinished = false, fileList } = req.body;
@@ -92,7 +108,7 @@ module.exports.patchTodo = (req, res, next) => {
 module.exports.deleteTodo = (req, res, next) => {
   const { id } = req.params;
 
-  Todo.deleteOne({ id })
+  Todo.deleteOne({ _id: id })
     .orFail()
     .then(() => {
       res.send({ message: 'ok' });

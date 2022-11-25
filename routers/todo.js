@@ -1,4 +1,5 @@
 // GET / - returns all todos
+// GET /:id = returns todo y ids
 // POST / - posts a new todo in body, returns new todo
 // PUT /done/:id - puts done status expected id in body
 // PATCH /done/:id - updates todo by any field returns updated todo
@@ -14,17 +15,20 @@ const {
   putDone,
   deleteDone,
   patchTodo,
-  deleteTodo
+  deleteTodo,
+  getTodoById
 } = require('../controllers/todo');
 
 router.get('/', getTodos);
+
+router.get('/:id',getTodoById);
 
 router.post(
   '/',
   celebrate({
     body: Joi.object().keys({
       caption: Joi.string().min(2).max(128).required(),
-      description: Joi.string(),
+      description: Joi.string().max(512),
       expires: Joi.date().required(),
       isFinished: Joi.boolean(),
       fileList: Joi.array().items(Joi.string().pattern(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/)),
