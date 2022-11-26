@@ -1,6 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-var cors = require('cors');
+// var cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
@@ -24,7 +24,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // enabling cors *
-app.use(cors());
+// app.use(cors());
 
 // front end static folder
 app.use('/', express.static(path.join(__dirname, 'public')))
