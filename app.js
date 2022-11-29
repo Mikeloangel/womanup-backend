@@ -10,7 +10,8 @@ const todoRoutes = require('./routers/todo');
 const { handleErrors } = require('./middlwares/handleErrors');
 const ResourceNotFoundError = require('./errors/not-found-error');
 
-const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env;
+const PORT = 3200;
 
 mongoose.connect('mongodb://localhost:27017/womanup');
 const app = express();
