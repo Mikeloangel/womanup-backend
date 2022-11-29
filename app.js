@@ -27,7 +27,7 @@ app.use(limiter);
 // app.use(cors());
 
 // front end static folder
-app.use('/', express.static(path.join(__dirname, 'public')))
+// app.use('/', express.static(path.join(__dirname, 'public')))
 
 // body parser
 app.use(bodyParser.json());
