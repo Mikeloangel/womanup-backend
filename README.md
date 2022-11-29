@@ -13,7 +13,7 @@ Backend API for TodoList with static front end
 
 ## Links
 
-[deploy See in action](https://mestology.nomoredomains.club/todo/) 
+[deploy See in action](http://mestology.nomoredomains.club:3000/) 
 
 [Frontend part git source](https://github.com/Mikeloangel/womanup-frontend) 
 
